@@ -11,6 +11,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.Serializable;
+import java.lang.reflect.Field;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -42,21 +44,14 @@ public abstract class BaseServiceImpl<T,E extends Serializable> implements BaseS
    * @return
    */
   public T  addValue(T record,boolean flag){
-    /*CurrentUser currentUser= (CurrentUser) SecurityUtils.getSubject().getSession().getAttribute("curentUser");
     //统一处理公共字段
     Class<?> clazz=record.getClass();
     try {
       if(flag){
-        Field field=clazz.getDeclaredField("createBy");
-        field.setAccessible(true);
-        field.set(record,currentUser.getId());
-        Field fieldDate=clazz.getDeclaredField("createDate");
+        Field fieldDate=clazz.getDeclaredField("createTime");
         fieldDate.setAccessible(true);
         fieldDate.set(record,new Date());
       }else{
-        Field field=clazz.getDeclaredField("updateBy");
-        field.setAccessible(true);
-        field.set(record,currentUser.getId());
         Field fieldDate=clazz.getDeclaredField("updateDate");
         fieldDate.setAccessible(true);
         fieldDate.set(record,new Date());
@@ -66,8 +61,7 @@ public abstract class BaseServiceImpl<T,E extends Serializable> implements BaseS
     } catch (IllegalAccessException e) {
       e.printStackTrace();
     }
-    return record;*/
-    return null;
+    return record;
   }
 
   @Override
