@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
     <title>问卷调查</title>
@@ -78,7 +78,7 @@
                 </div>
                 <div class='field ui-field-contain' id='div3' req='1' topic='3' data-role='fieldcontain' type='3'>
                     <div class='field-label'>3. 图片里是一包叫做大团结的短支烟，您觉得看起来怎么样？<span class='req'>*</span><img
-                            src="images/wenjuan.jpg" alt=""></div>
+                            src="${re.contextPath}/static/images/wenjuan.jpg" alt=""></div>
                     <div class='ui-controlgroup'>
                         <div class='ui-radio'><span class='jqradiowrapper'>
                             <input type='radio' value='1' id='q3_1' name='q3' style='display:none;'/>
@@ -165,17 +165,17 @@
                     <div class='field-label'>8. 您更愿意在哪种场景里抽大团结呢？<span class='req'>*</span></div>
                     <div class='ui-controlgroup'>
                         <div class='ui-radio'><span class='jqradiowrapper'>
-                            <input type='radio' value='无穷尽的加班TIME' id='q8_1' name='q8' style='display:none;'/>
+                            <input type='radio' value='1' id='q8_1' name='q8' style='display:none;'/>
                             <a class='jqradio' href='javascript:;'></a></span>
                             <div class='label' for='q8_1'>无穷尽的加班TIME</div>
                         </div>
                         <div class='ui-radio'><span class='jqradiowrapper'>
-                            <input type='radio' value='来去匆匆的地铁站口' id='q8_2' name='q8' style='display:none;'/>
+                            <input type='radio' value='2' id='q8_2' name='q8' style='display:none;'/>
                             <a class='jqradio' href='javascript:;'></a></span>
                             <div class='label' for='q8_2'>来去匆匆的地铁站口</div>
                         </div>
                         <div class='ui-radio'><span class='jqradiowrapper'>
-                            <input type='radio' value='斑斓喧嚣的酒吧' id='q8_3' name='q8' style='display:none;'/>
+                            <input type='radio' value='3' id='q8_3' name='q8' style='display:none;'/>
                             <a class='jqradio' href='javascript:;'></a></span>
                             <div class='label' for='q8_3'>斑斓喧嚣的酒吧</div>
                         </div>
@@ -187,17 +187,17 @@
                     <div class='field-label'>8. 您会在哪种场景里想起这包烟呢？<span class='req'>*</span></div>
                     <div class='ui-controlgroup'>
                         <div class='ui-radio'><span class='jqradiowrapper'>
-                            <input type='radio' value='无穷尽的加班TIME' id='q9_1' name='q9' style='display:none;'/>
+                            <input type='radio' value='1' id='q9_1' name='q9' style='display:none;'/>
                             <aclass='jqradio' href='javascript:;'></a></span>
                             <div class='label' for='q9_1'>无穷尽的加班TIME</div>
                         </div>
                         <div class='ui-radio'><span class='jqradiowrapper'>
-                            <input type='radio' value='来去匆匆的地铁站口' id='q9_2' name='q9' style='display:none;'/>
+                            <input type='radio' value='2' id='q9_2' name='q9' style='display:none;'/>
                             <a class='jqradio' href='javascript:;'></a></span>
                             <div class='label' for='q9_2'>来去匆匆的地铁站口</div>
                         </div>
                         <div class='ui-radio'><span class='jqradiowrapper'>
-                            <input type='radio' value='斑斓喧嚣的酒吧' id='q9_3' name='q9' style='display:none;'/>
+                            <input type='radio' value='3' id='q9_3' name='q9' style='display:none;'/>
                             <a class='jqradio' href='javascript:;'></a></span>
                             <div class='label' for='q9_3'>斑斓喧嚣的酒吧</div>
                         </div>
@@ -220,27 +220,27 @@
     function xuan() {
         /*if(document.getElementsByName("q8")[0].checked){
             document.getElementById("form1").action="jiaban";
-            document.getElementById("form1").submit();
+
         }
         if(document.getElementsByName("q8")[1].checked){
             document.getElementById("form1").action="ditie";
-            document.getElementById("form1").submit();
+
         }
         if(document.getElementsByName("q8")[2].checked){
             document.getElementById("form1").action="jiuba";
-            document.getElementById("form1").submit();
+
         }
         if(document.getElementsByName("q9")[0].checked){
             document.getElementById("form1").action="jiaban";
-            document.getElementById("form1").submit();
+
         }
         if(document.getElementsByName("q9")[1].checked){
             document.getElementById("form1").action="ditie";
-            document.getElementById("form1").submit();
+
         }
         if(document.getElementsByName("q9")[2].checked){
             document.getElementById("form1").action="jiuba";
-            document.getElementById("form1").submit();
+
         }*/
 
         var data = $('#form2').serialize();
@@ -250,10 +250,11 @@
             url: '/investigate/save',
             dataType: 'json',
             success: function (data) {
-
+                console.log(data);
+                location.href=data.url;
             },
             error: function () {
-
+                console.log("11111111111");
             }
         })
 

@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Controller
 @RequestMapping("/investigate")
 public class InvestigateController {
@@ -24,7 +27,7 @@ public class InvestigateController {
 
     @PostMapping("/save")
     @ResponseBody
-    public String save(Integer q1,Integer q2,Integer q3,String q4,Integer q5,Integer q6,Integer q7,Integer q8,Integer q9){
+    public Map<String,String> save(Integer q1,Integer q2,Integer q3,String q4,Integer q5,Integer q6,Integer q7,Integer q8,Integer q9){
         Investigate investigate = new Investigate();
         if(null!=q1){
             investigate.setQuestion1(q1==1?"男":"女");
@@ -70,15 +73,16 @@ public class InvestigateController {
             investigate.setQuestion5(q5==1?"抽":"不抽");
         }
         String sq6 = null;
+        String url = null;
         if(q6!=null){
             if(null!=q6){
                 switch (q6) {
                     case 1:
-                        sq6 = "无穷尽的加班TIME"; break;
+                        sq6 = "无穷尽的加班TIME"; url = "http://7colors.club/toWork.jspx"; break;
                     case 2:
-                        sq6 = "来去匆匆的地铁站口"; break;
+                        sq6 = "来去匆匆的地铁站口"; url = "http://7colors.club/toSubway.jspx"; break;
                     case 3:
-                        sq6 = "斑斓喧嚣的酒吧"; break;
+                        sq6 = "斑斓喧嚣的酒吧"; url = "http://7colors.club/toBar.jspx"; break;
                     default:
                         sq6 = "";
                 }
@@ -93,11 +97,11 @@ public class InvestigateController {
             if(null!=q8){
                 switch (q8) {
                     case 1:
-                        sq8 = "无穷尽的加班TIME"; break;
+                        sq8 = "无穷尽的加班TIME"; url = "http://7colors.club/toWork.jspx"; break;
                     case 2:
-                        sq8 = "来去匆匆的地铁站口"; break;
+                        sq8 = "来去匆匆的地铁站口"; url = "http://7colors.club/toSubway.jspx"; break;
                     case 3:
-                        sq8 = "斑斓喧嚣的酒吧"; break;
+                        sq8 = "斑斓喧嚣的酒吧"; url = "http://7colors.club/toBar.jspx"; break;
                     default:
                         sq8 = "";
                 }
@@ -109,11 +113,11 @@ public class InvestigateController {
             if(null!=q9){
                 switch (q9) {
                     case 1:
-                        sq9 = "无穷尽的加班TIME"; break;
+                        sq9 = "无穷尽的加班TIME"; url = "http://7colors.club/toWork.jspx"; break;
                     case 2:
-                        sq9 = "来去匆匆的地铁站口"; break;
+                        sq9 = "来去匆匆的地铁站口"; url = "http://7colors.club/toSubway.jspx"; break;
                     case 3:
-                        sq9 = "斑斓喧嚣的酒吧"; break;
+                        sq9 = "斑斓喧嚣的酒吧"; url = "http://7colors.club/toBar.jspx"; break;
                     default:
                         sq9 = "";
                 }
@@ -121,7 +125,9 @@ public class InvestigateController {
         }
         investigate.setQuestion9(sq9);
         investigateService.insert(investigate);
-        return "1";
+        Map<String,String> map = new HashMap<String,String>();
+        map.put("url",url);
+        return map;
     }
 
 }
