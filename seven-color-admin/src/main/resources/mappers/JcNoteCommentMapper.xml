@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.github.dalianghe.admin.mapper.JcNoteCommentMapper">
+  <resultMap id="BaseResultMap" type="com.github.dalianghe.admin.entity.JcNoteComment">
+    <id column="comment_id" jdbcType="INTEGER" property="commentId" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="note_id" jdbcType="VARCHAR" property="noteId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    comment_id,content,note_id,user_id,create_time
+  </sql>
+
+  <select id="selectListByPage" parameterType="com.github.dalianghe.admin.entity.JcNoteComment" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List"/>
+    from jc_note_comment
+    <where>
+     <if test="content!=null and content!=''"> and content like "%" #{content} "%"</if>
+    </where>
+  </select>
+  <select id="count" resultType="java.lang.Integer">
+    select count(*) from jc_note_comment
+  </select>
+
+  <delete id="delById" parameterType="Integer">
+    delete from jc_note_comment where comment_id=#{commentId}
+  </delete>
+
+</mapper>
